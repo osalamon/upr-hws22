@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-// global vars
-float pi = M_PI;
-
 // structures definitions
 typedef struct {
   float x;
@@ -20,6 +17,9 @@ typedef struct {
 // printf("sizeof(crcl.center) = %d | sizeof(crcl.radius) = %d", sizeof(crcl.center), sizeof(crcl.radius));
 
 int main() {
+  Circle crcl = { .radius = 4.568787, .center = { .x = 4.54654, .y = 687468 } };
+
+  printf("sizeof(crcl.center) = %ld \nsizeof(crcl.radius) = %ld", sizeof(crcl.center), sizeof(crcl.radius));
 
   return 0;
 }

@@ -17,7 +17,7 @@ int compute_grade( int points ) {
     return grade;
 }
 
-void printGrades(int* points, int len) {
+void print_grades(int* points, int len) {
     int grade = 0;
     for (int i = 0; i < len; i++) {
         if (points[i] > 100) {
@@ -28,35 +28,40 @@ void printGrades(int* points, int len) {
         } else {
             grade = compute_grade(points[i]);
             printf("%d\n", grade);
+            return;
         }
     }
 }
 
-void gradesIO (int pointsEntered, int *pointsAll, int current, int len) {
+void grades_io(int pointsEntered, int *pointsAll, int current, int len) {
     int temp;
-    // int* points = calloc(0, sizeof(int));
     pointsAll[current] = pointsEntered;
 
     if  (pointsAll[current] < 0) {
-        printGrades(pointsAll, len);
+        print_grades(pointsAll, len);
     } else {
         len++;
         pointsAll = realloc(pointsAll, len * sizeof(int));
         
         current++;
         scanf("%d", &temp);
-        gradesIO(temp, pointsAll, current, len);
+        grades_io(temp, pointsAll, current, len);
     }
 }
 
+int user_int_input() {
+    int input;
+    scanf("%d", &input);
+    return input;
+}
+
 int main() {
-    // int* points = calloc(0, sizeof(int));
-    int* points = malloc(1 * sizeof(int));
-    int first;
+    int* points = (int*) malloc(1 * sizeof(int));
+    int inputed = user_int_input();
     int current = 0;
-    int len = 1;
+    int len = 0;
 
-    scanf("%d", &first);
+    grades_io(inputed, points, current, len);
 
-    gradesIO(first, points, current, len);
+    return 0;
 }
